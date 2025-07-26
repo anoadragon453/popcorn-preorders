@@ -1,115 +1,370 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Popcorn the Circus Pigeon Plush – Pre‑Order</title>
-  <!-- Google Fonts for fun, circus‑y vibe -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-       --pink:#ff9ac6;
-       --yellow:#ffd873;
-       --brown:#5c2c18;
-       --cream:#fff8e8;
-    }
-    *,*:before,*:after{box-sizing:border-box;}
-    body{
-       margin:0;
-       padding:0;
-       font-family:'Inter', sans-serif;
-       background:var(--cream);
-       color:var(--brown);
-       display:flex;
-       flex-direction:column;
-       min-height:100vh;
-       text-align:center;
-    }
-    header{
-       padding:2rem 1rem 1rem;
-    }
-    h1{
-       font-family:'Fredoka One', cursive;
-       font-size:2.5rem;
-       margin:0.25rem 0;
-    }
-    h2{
-       margin:0;
-       font-size:1.25rem;
-       font-weight:600;
-    }
-    .hero{
-       max-width:500px;
-       width:90%;
-       margin:1rem auto;
-       border-radius:1rem;
-       box-shadow:0 4px 10px rgba(0,0,0,.1);
-    }
-    .details{
-       max-width:600px;
-       margin:1rem auto;
-       font-size:1.1rem;
-       line-height:1.5;
-    }
-    .btn{
-       display:inline-block;
-       padding:1rem 2rem;
-       margin:0.5rem;
-       font-size:1.25rem;
-       font-weight:600;
-       text-decoration:none;
-       border-radius:0.75rem;
-       transition:transform .1s ease, box-shadow .1s ease;
-    }
-    .btn.primary{
-       background:var(--pink);
-       color:#fff;
-       box-shadow:0 3px 6px rgba(0,0,0,.15);
-    }
-    .btn.secondary{
-       background:var(--yellow);
-       color:var(--brown);
-       box-shadow:0 3px 6px rgba(0,0,0,.15);
-    }
-    .btn:hover{
-       transform:translateY(-2px);
-       box-shadow:0 6px 12px rgba(0,0,0,.15);
-    }
-    footer{
-       margin-top:auto;
-       padding:1rem 0;
-       font-size:.85rem;
-       color:#666;
-    }
-    a{color:inherit;}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Popcorn the Circus Pigeon</h1>
-    <h2>Plush — Confuzzled 2025 Pre‑Order</h2>
-  </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Popcorn the Circus Pigeon Plush – Pre‑Order</title>
+        <!-- Google Fonts for fun, circus‑y vibe -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+        <link rel="mask-icon" href="/favicon.png" color="#5bbad5" />
+        <meta name="theme-color" content="#ffffff" />
+        <style>
+            :root {
+                --pink: #ff9ac6;
+                --yellow: #ffd873;
+                --brown: #5c2c18;
+                --cream: #fff8e8;
+            }
+            *,
+            *:before,
+            *:after {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Inter", sans-serif;
+                background: var(--cream);
+                color: var(--brown);
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                text-align: center;
+            }
+            header {
+                padding: 2rem 1rem 1rem;
+            }
+            h1 {
+                font-family: "Fredoka One", cursive;
+                font-size: 2.5rem;
+                margin: 0.25rem 0;
+            }
+            h2 {
+                margin: 0;
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+            .carousel {
+                max-width: 500px;
+                width: 90%;
+                margin: 1rem auto;
+                position: relative;
+                border-radius: 1rem;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 100%; /* Maintains aspect ratio */
+            }
+            .carousel-track {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                transition: transform 0.5s ease;
+            }
+            .carousel-slide {
+                min-width: 100%;
+                height: 100%;
+            }
+            .carousel-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 1rem;
+            }
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.8);
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                font-size: 1.2rem;
+                color: var(--brown);
+                transition: background 0.2s ease;
+                z-index: 10;
+            }
+            .carousel-nav:hover {
+                background: rgba(255, 255, 255, 0.95);
+            }
+            .carousel-prev {
+                left: 10px;
+            }
+            .carousel-next {
+                right: 10px;
+            }
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 1rem;
+            }
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(92, 44, 24, 0.3);
+                cursor: pointer;
+                transition: background 0.2s ease;
+            }
+            .carousel-dot.active {
+                background: var(--pink);
+            }
+            .details {
+                max-width: 600px;
+                margin: 1rem auto;
+                font-size: 1.1rem;
+                line-height: 1.5;
+            }
+            .btn {
+                display: inline-block;
+                padding: 1rem 2rem;
+                margin: 0.5rem;
+                font-size: 1.25rem;
+                font-weight: 600;
+                text-decoration: none;
+                border-radius: 0.75rem;
+                transition:
+                    transform 0.1s ease,
+                    box-shadow 0.1s ease;
+            }
+            .btn.primary {
+                background: var(--pink);
+                color: #fff;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            }
+            .btn.secondary {
+                background: var(--yellow);
+                color: var(--brown);
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+            footer {
+                margin-top: auto;
+                padding: 1rem 0;
+                font-size: 0.85rem;
+                color: #666;
+            }
+            a {
+                color: inherit;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Popcorn the Circus Pigeon</h1>
+            <h2>Plush — 2025 Order Page</h2>
+        </header>
 
-  <!-- Replace the source below with your own local image filename or hosted URL -->
-  <img src="popcorn-plush.jpg" alt="Popcorn the Circus Pigeon plush marketing artwork" class="hero">
+        <div class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img
+                            src="images/1.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 1"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/2.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 2"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/3.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 3"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/4.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 4"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/5.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 5"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/6.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 6"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/7.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 7"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/8.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 8"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/9.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 9"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/10.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 10"
+                        />
+                    </div>
+                    <div class="carousel-slide">
+                        <img
+                            src="images/11.jpeg"
+                            alt="Popcorn the Circus Pigeon plush - Image 11"
+                        />
+                    </div>
+                </div>
+                <button
+                    class="carousel-nav carousel-prev"
+                    onclick="changeSlide(-1)"
+                >
+                    ‹
+                </button>
+                <button
+                    class="carousel-nav carousel-next"
+                    onclick="changeSlide(1)"
+                >
+                    ›
+                </button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
 
-  <section class="details">
-    <p><strong>£35</strong> • FREE shipping • 23cm tall plush</p>
-    <p>Pre‑orders include a <strong>FREE vinyl sticker</strong>, given at the booth.</p>
-    <p>Estimated shipping: <strong>Summer 2025</strong></p>
-  </section>
+        <section class="details">
+            <p><strong>$45</strong> • $5.50 shipping • 23cm tall plush</p>
+            <p>U.S. CUSTOMERS ONLY — LIMITED TIME OFFER!</p>
+            <p>
+                Popcorn the Circus Pigeon Plush is flying in for a very special
+                U.S.-only shipping window!
+            </p>
 
-  <section>
-    <!-- TODO: Swap the href values with your real links -->
-    <a class="btn primary" href="https://buy.stripe.com/dRm6oH4wG7AQ5y100b6wE00" target="_blank" rel="noopener">Pay now with card</a>
-    <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScEXbYoqsKVpB134VUecWvnewwoBLdUCXhTTAdtuMWHlfX2Ow/viewform?usp=dialog" target="_blank" rel="noopener">I’ve already paid cash</a>
-  </section>
+            <p>
+                From July 30th to August 5th, I’ll be in the United States and
+                shipping Popcorn directly from a U.S. address, meaning your
+                shipping will be just $5.50 instead of the usual $27
+                international rate.
+            </p>
 
-  <footer>
-    You’ll be charged immediately (or at the booth) and notified by email before we ship.<br>
-    A product by <a href="https://redpaletteart.com">Red Palette Art</a>.<br>
-    Need help? Contact <a href="mailto:redpaletteart@gmail.com">redpaletteart@gmail.com</a>.
-  </footer>
-</body>
+            <p>
+                All U.S. orders placed during this time will ship via USPS
+                Ground Advantage with an estimated delivery time of 3–5 business
+                days.
+            </p>
+
+            <p>
+                This is a very limited-time offer based on my travel schedule -
+                once I leave the U.S., Popcorn will only be available through my
+                main shop with standard international shipping.
+            </p>
+
+            <p>
+                🛒 Want worldwide shipping or missed the U.S. window?
+                <a
+                    href="https://shop.redpaletteart.com/product/popcorn-the-circus-pigeon-plush"
+                    >Order here instead</a
+                >
+            </p>
+        </section>
+
+        <section>
+            <a
+                class="btn primary"
+                href="https://buy.stripe.com/5kQaEXgfodZegcFcMX6wE01"
+                target="_blank"
+                rel="noopener"
+                >Pay now with card</a
+            >
+        </section>
+
+        <script>
+            let currentSlide = 0;
+            const totalSlides = 11;
+
+            // Initialize carousel dots
+            function initCarousel() {
+                const dotsContainer = document.getElementById("carouselDots");
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement("div");
+                    dot.className = "carousel-dot";
+                    if (i === 0) dot.classList.add("active");
+                    dot.onclick = () => goToSlide(i);
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateCarousel() {
+                const track = document.getElementById("carouselTrack");
+                const dots = document.querySelectorAll(".carousel-dot");
+
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === currentSlide);
+                });
+            }
+
+            function changeSlide(direction) {
+                currentSlide += direction;
+                if (currentSlide >= totalSlides) currentSlide = 0;
+                if (currentSlide < 0) currentSlide = totalSlides - 1;
+                updateCarousel();
+            }
+
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+
+            // Auto-advance carousel every 5 seconds
+            setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+
+            // Initialize when page loads
+            document.addEventListener("DOMContentLoaded", initCarousel);
+        </script>
+
+        <footer>
+            You’ll be charged immediately and notified by email before we
+            ship.<br />
+
+            A product by
+            <a href="https://redpaletteart.com">Red Palette Art</a>.<br />
+            Need help? Contact
+            <a href="mailto:redpaletteart@gmail.com">redpaletteart@gmail.com</a
+            >.
+        </footer>
+    </body>
 </html>
