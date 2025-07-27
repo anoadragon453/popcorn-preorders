@@ -257,13 +257,14 @@
                     class="carousel-nav carousel-prev"
                     onclick="changeSlide(-1)"
                 >
-                    ‹
+                    <!--There is no left-equivalent of this arrow, so use CSS to flip it-->
+                    <span style="display:inline-block; transform: scaleX(-1);">➜</span>
                 </button>
                 <button
                     class="carousel-nav carousel-next"
                     onclick="changeSlide(1)"
                 >
-                    ›
+                    ➜
                 </button>
             </div>
             <div class="carousel-dots" id="carouselDots"></div>
